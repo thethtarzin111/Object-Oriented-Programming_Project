@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -58,6 +59,8 @@ public class MunicipalityDataRetriever {
                 Log.d("LUTProject", workAndEmploymentData.toPrettyString());
 
                 return workplaceSelfSufficiencyData;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +68,7 @@ public class MunicipalityDataRetriever {
         return null;
 
     }
-    public ArrayList<PopulationData> getPopulationData(Context context, String municipalityName) {
+    public ArrayList<PopulationData> getPopulationData(DiscoverFragment context, String municipalityName) {
         String code = municipalityNamesToCodesMap.get(municipalityName);
         try {
             JsonNode jsonQuery = objectMapper.readTree(context.getResources().openRawResource(R.raw.populationquery));

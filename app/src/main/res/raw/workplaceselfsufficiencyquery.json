@@ -1,4 +1,4 @@
-{"queryObj":{
+{
   "query": [
     {
       "code": "Vuosi",
@@ -22,4 +22,4 @@
   "response": {
     "format": "json-stat2"
   }
-},"tableIdForQuery":"statfin_tyokay_pxt_125s.px"}
+}
