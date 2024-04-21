@@ -72,7 +72,7 @@ public class MunicipalityDataRetriever {
         String code = municipalityNamesToCodesMap.get(municipalityName);
         try {
             JsonNode jsonQuery = objectMapper.readTree(context.getResources().openRawResource(R.raw.populationquery));
-            ((ObjectNode) jsonQuery.findValue("query").get(0).get("selection")).putArray("values").add(code);
+            ((ObjectNode) jsonQuery.findValue("query").get(1).get("selection")).putArray("values").add(code);
 
             HttpURLConnection con = connectToAPIAndSendPostRequest(objectMapper, jsonQuery, new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/synt/statfin_synt_pxt_12dy.px"));
 
@@ -97,7 +97,7 @@ public class MunicipalityDataRetriever {
 
                 ArrayList<PopulationData> populationData = new ArrayList<>();
 
-                for (int i = 0; i < populationData.size(); i++) {
+                for (int i = 0; i < populations.size(); i++) {
                     Integer population = populations.get(i).asInt();
                     populationData.add(new PopulationData(Integer.parseInt(years.get(i)), population));
 

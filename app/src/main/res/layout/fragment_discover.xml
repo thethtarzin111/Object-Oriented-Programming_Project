@@ -22,17 +22,19 @@ tools:context=".MainActivity">
         tools:layout_editor_absoluteY="19dp"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
-    android:id="@+id/txtPopulation"
-    android:layout_width="223dp"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="32dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.17"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/txtWeather"
-    app:layout_constraintVertical_bias="1.0" />
+        android:id="@+id/txtPopulation"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeather"
+        app:layout_constraintVertical_bias="1.0"/>
+
 
     <EditText
         android:id="@+id/search_bar"

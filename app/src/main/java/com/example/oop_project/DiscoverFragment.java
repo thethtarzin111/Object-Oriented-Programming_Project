@@ -74,7 +74,8 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            String dataString = "";
+                                            String dataString = "Population\n";
+
                                             for (PopulationData data: municipalityDataArrayList) {
                                                 dataString = dataString + data.getYear() + ": " + data.getPopulation() + "\n";
                                             }
