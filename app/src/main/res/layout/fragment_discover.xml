@@ -8,20 +8,23 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
         android:text="Discover and Learn!"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/txtPopulation"
@@ -33,6 +36,18 @@ tools:context=".MainActivity">
         app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWeather"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <TextView
+        android:id="@+id/txtWorkSelfSufficiency"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPopulation"
         app:layout_constraintVertical_bias="1.0"/>
 
 

@@ -1,6 +1,5 @@
 package com.example.oop_project;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -32,7 +32,7 @@ public class MunicipalityDataRetriever {
         return municipalityNamesToCodesMap;
     }
 
-    public WorkplaceSelfSufficiencyData getWorkplaceAndEmploymentData(Context context, String municipalityName) {
+    public ArrayList<WorkplaceSelfSufficiencyData> getWorkplaceAndEmploymentData(DiscoverFragment context, String municipalityName) {
 
         String code = municipalityNamesToCodesMap.get(municipalityName);
 
@@ -50,14 +50,43 @@ public class MunicipalityDataRetriever {
                     response.append(responseLine.trim());
                 }
 
-                JsonNode municipalityData = objectMapper.readTree(response.toString());
+                //JsonNode municipalityData = objectMapper.readTree(response.toString());
 
                 JsonNode workAndEmploymentData = objectMapper.readTree(response.toString());
 
-                WorkplaceSelfSufficiencyData workplaceSelfSufficiencyData = new WorkplaceSelfSufficiencyData();
+                //WorkplaceSelfSufficiencyData workplaceSelfSufficiencyData = new WorkplaceSelfSufficiencyData();
+                ArrayList<String> years = new ArrayList<>();
+                JsonNode workplaceSelfSufficiency = null;
 
+                for (JsonNode node : workAndEmploymentData.get("dimension").get("Vuosi").get("category").get("label")) {
+                    years.add(node.asText());
+                }
+
+                workplaceSelfSufficiency = workAndEmploymentData.get("value");
+
+                ArrayList<WorkplaceSelfSufficiencyData> workplaceSelfSufficiencyData = new ArrayList<>();
+
+                for (int i = 0; i < workplaceSelfSufficiency.size(); i++) {
+                    double work = workplaceSelfSufficiency.get(i).asDouble();
+                    workplaceSelfSufficiencyData.add(new WorkplaceSelfSufficiencyData(Integer.parseInt(years.get(i)), work));
+                }
+
+                for (WorkplaceSelfSufficiencyData data : workplaceSelfSufficiencyData) {
+                    System.out.println(data.getYear() + ":" + data.getWorkplaceSelfSufficiency() + " ");
+
+                    for (int i = 0; i < data.getWorkplaceSelfSufficiency() / 1000; i++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
+                /*
                 Log.d("LUTProject", workAndEmploymentData.toPrettyString());
 
+                JsonNode value = workAndEmploymentData.get("value");
+
+                Log.d("LUTProject value",value.asText());
+
+                 */
                 return workplaceSelfSufficiencyData;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

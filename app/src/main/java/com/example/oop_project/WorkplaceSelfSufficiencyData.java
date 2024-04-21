@@ -1,8 +1,25 @@
 package com.example.oop_project;
 
-import java.math.BigDecimal;
-
 public class WorkplaceSelfSufficiencyData {
-    BigDecimal workplaceSelfSufficiency;
-    BigDecimal employmentRate;
+    double workplaceSelfSufficiency;
+    //BigDecimal employmentRate;
+
+    private int year;
+
+    public WorkplaceSelfSufficiencyData(int year, double workplaceSelfSufficiency) {
+        this.year = year;
+        this.workplaceSelfSufficiency = workplaceSelfSufficiency;
+    }
+    public int getYear() {
+        return year;
+    }
+    public void setYear(int year) {
+        this.year = year;
+    }
+    public double getWorkplaceSelfSufficiency() {
+        return workplaceSelfSufficiency;
+    }
+    public void setWorkplaceSelfSufficiency(float workplaceSelfSufficiency) {
+        this.workplaceSelfSufficiency = workplaceSelfSufficiency;
+    }
 }

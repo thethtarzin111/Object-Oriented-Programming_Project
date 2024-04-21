@@ -25,11 +25,12 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
 
     private TextView txtPopulation;
     private TextView txtWeather;
+    private TextView txtWork;
 
     private EditText editMunicipalityName;
     Button searchBtn;
 
-    @SuppressLint("WrongViewCast")
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
 
         txtPopulation = view.findViewById(R.id.txtPopulation);
         txtWeather = view.findViewById(R.id.txtWeather);
+        txtWork = view.findViewById(R.id.txtWorkSelfSufficiency);
         editMunicipalityName = view.findViewById(R.id.search_bar);
         searchBtn = view.findViewById(R.id.search_button);
 
@@ -68,19 +70,31 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                         return;
                                     }
 
+                                    ArrayList<WorkplaceSelfSufficiencyData> workplaceSelfSufficiencyDataArrayList = municipalityDataRetriever.getWorkplaceAndEmploymentData(context, editMunicipalityName.getText().toString());
+
+                                    if (workplaceSelfSufficiencyDataArrayList == null) {
+                                        return;
+                                    }
                                     WeatherData weatherData = weatherDataRetriever.getData(editMunicipalityName.getText().toString());
 
                                     // When we want to update values we got from the API to the UI, we must do it inside runOnUiThread -method
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            String dataString = "Population\n";
+                                            String populationString = "Population Changes During the Past Three Years\n";
 
                                             for (PopulationData data: municipalityDataArrayList) {
-                                                dataString = dataString + data.getYear() + ": " + data.getPopulation() + "\n";
+                                                populationString = populationString + data.getYear() + ": " + data.getPopulation() + "\n";
                                             }
-                                            txtPopulation.setText(dataString);
+                                            txtPopulation.setText(populationString);
 
+                                            String workString = "Workplace self-sufficiency\n";
+
+                                            for (WorkplaceSelfSufficiencyData workdata: workplaceSelfSufficiencyDataArrayList) {
+                                                workString = workString + workdata.getYear() + ": " + workdata.getWorkplaceSelfSufficiency() + "\n";
+                                            }
+
+                                            txtWork.setText(workString);
 
                                             String weatherDataAsString = weatherData.getName() + "\n" +
                                                     "Weather now: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")\n" +
