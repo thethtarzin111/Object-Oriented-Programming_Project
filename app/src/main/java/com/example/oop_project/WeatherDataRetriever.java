@@ -14,7 +14,7 @@ public class WeatherDataRetriever {
     private final String API_KEY =  "28a3c264b38cd51d3c31f7923cbaa301";
 
     // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-    private final String WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s";
+    private final String WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s&units=metric";
 
     // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&appid={API key}
     private  final String GEOLOCATION_API_URL = "http://api.openweathermap.org/geo/1.0/direct?q=%s&appid=%s";

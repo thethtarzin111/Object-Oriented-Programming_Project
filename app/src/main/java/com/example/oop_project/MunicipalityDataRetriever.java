@@ -79,14 +79,7 @@ public class MunicipalityDataRetriever {
                     }
                     System.out.println();
                 }
-                /*
-                Log.d("LUTProject", workAndEmploymentData.toPrettyString());
 
-                JsonNode value = workAndEmploymentData.get("value");
-
-                Log.d("LUTProject value",value.asText());
-
-                 */
                 return workplaceSelfSufficiencyData;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -150,6 +143,65 @@ public class MunicipalityDataRetriever {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public ArrayList<EmploymentData> getEmploymentData(DiscoverFragment context, String municipalityName) {
+
+        String code = municipalityNamesToCodesMap.get(municipalityName);
+
+
+        try {
+            JsonNode jsonQuery = objectMapper.readTree(context.getResources().openRawResource(R.raw.employment));
+            ((ObjectNode) jsonQuery.findValue("query").get(0).get("selection")).putArray("values").add(code);
+
+            HttpURLConnection con = connectToAPIAndSendPostRequest(objectMapper, jsonQuery,new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/tyokay/statfin_tyokay_pxt_115x.px"));
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while((responseLine = br.readLine()) !=null) {
+                    response.append(responseLine.trim());
+                }
+
+                //JsonNode municipalityData = objectMapper.readTree(response.toString());
+
+                JsonNode empData = objectMapper.readTree(response.toString());
+
+                //WorkplaceSelfSufficiencyData workplaceSelfSufficiencyData = new WorkplaceSelfSufficiencyData();
+                ArrayList<String> years = new ArrayList<>();
+                JsonNode employmentRate = null;
+
+                for (JsonNode node : empData.get("dimension").get("Vuosi").get("category").get("label")) {
+                    years.add(node.asText());
+                }
+
+                employmentRate = empData.get("value");
+
+                ArrayList<EmploymentData> employmentData = new ArrayList<>();
+
+                for (int i = 0; i < employmentRate.size(); i++) {
+                    double employment = employmentRate.get(i).asDouble();
+                    employmentData.add(new EmploymentData(Integer.parseInt(years.get(i)), employment));
+                }
+
+                for (EmploymentData data : employmentData) {
+                    System.out.println(data.getYear() + ":" + data.getEmploymentRate() + " ");
+
+                    for (int i = 0; i < data.getEmploymentRate() / 1000; i++) {
+                        System.out.print("*");
+                    }
+                    System.out.println();
+                }
+
+                return employmentData;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     private static HttpURLConnection connectToAPIAndSendPostRequest(ObjectMapper objectMapper, JsonNode jsonQuery, URL url)

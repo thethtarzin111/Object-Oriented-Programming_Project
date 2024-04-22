@@ -2,7 +2,6 @@ package com.example.oop_project;
 
 public class WorkplaceSelfSufficiencyData {
     double workplaceSelfSufficiency;
-    //BigDecimal employmentRate;
 
     private int year;
 

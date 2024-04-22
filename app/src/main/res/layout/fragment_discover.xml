@@ -50,6 +50,18 @@ tools:context=".MainActivity">
         app:layout_constraintTop_toBottomOf="@+id/txtPopulation"
         app:layout_constraintVertical_bias="1.0"/>
 
+    <TextView
+        android:id="@+id/txtEmployment"
+        android:layout_width="223dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWorkSelfSufficiency"
+        app:layout_constraintVertical_bias="1.0"/>
+
 
     <EditText
         android:id="@+id/search_bar"
@@ -87,5 +99,15 @@ tools:context=".MainActivity">
         app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="119dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/txtWeather"
+        app:layout_constraintTop_toBottomOf="@+id/search_button"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

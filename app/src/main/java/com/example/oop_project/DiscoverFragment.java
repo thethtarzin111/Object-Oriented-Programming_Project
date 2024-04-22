@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
     private TextView txtPopulation;
     private TextView txtWeather;
     private TextView txtWork;
+    private TextView txtEmployment;
+    private ImageView weatherIcon;
 
     private EditText editMunicipalityName;
     Button searchBtn;
@@ -38,9 +41,11 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
 
+        weatherIcon = view.findViewById(R.id.weatherIcon);
         txtPopulation = view.findViewById(R.id.txtPopulation);
         txtWeather = view.findViewById(R.id.txtWeather);
         txtWork = view.findViewById(R.id.txtWorkSelfSufficiency);
+        txtEmployment = view.findViewById(R.id.txtEmployment);
         editMunicipalityName = view.findViewById(R.id.search_bar);
         searchBtn = view.findViewById(R.id.search_button);
 
@@ -75,6 +80,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                     if (workplaceSelfSufficiencyDataArrayList == null) {
                                         return;
                                     }
+
+                                    ArrayList<EmploymentData> employmentDataArrayList = municipalityDataRetriever.getEmploymentData(context, editMunicipalityName.getText().toString());
+
+                                    if (employmentDataArrayList == null) {
+                                        return;
+                                    }
+
                                     WeatherData weatherData = weatherDataRetriever.getData(editMunicipalityName.getText().toString());
 
                                     // When we want to update values we got from the API to the UI, we must do it inside runOnUiThread -method
@@ -95,13 +107,45 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                             }
 
                                             txtWork.setText(workString);
+                                            String employmentString = "Employment Rate\n";
+
+                                            for (EmploymentData employmentData: employmentDataArrayList) {
+                                                employmentString = employmentString + employmentData.getYear() + ": " + employmentData.getEmploymentRate() + "\n";
+                                            }
+
+                                            txtEmployment.setText(employmentString);
+
 
                                             String weatherDataAsString = weatherData.getName() + "\n" +
                                                     "Weather now: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")\n" +
-                                                    "Temperature: " + weatherData.getTemperature() + "\n" +
+                                                    "Temperature: " + weatherData.getTemperature() + " °C\n" +
                                                     "Wind speed: " + weatherData.getWindSpeed() + "\n";
 
                                             txtWeather.setText(weatherDataAsString);
+
+                                            String weatherCondition = weatherData.getMain();
+                                            int iconResource;
+                                            switch (weatherCondition) {
+                                                case "Sun":
+                                                    iconResource = R.drawable.sunny;
+                                                    break;
+                                                case "Rain":
+                                                    iconResource = R.drawable.rain;
+                                                    break;
+                                                case "Clouds":
+                                                    iconResource = R.drawable.cloud;
+                                                    break;
+                                                case "Snow":
+                                                    iconResource = R.drawable.snow;
+                                                    break;
+                                                // Add more cases for other weather conditions
+                                                default:
+                                                    iconResource = R.drawable.sunny;
+                                                    break;
+                                            }
+
+// Set the icon to the ImageView
+                                            weatherIcon.setImageResource(iconResource);
                                         }
                                     });                            }
                             }
