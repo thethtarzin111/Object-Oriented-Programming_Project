@@ -4,4 +4,82 @@
     <string name="close_nav">Close Navigation Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="infoHelsinki">Helsinki
+Helsinki is the capital and most populous city in Finland. It is located on the shore of the Gulf of Finland and serves as the seat of the Uusimaa region in southern Finland. Approximately 0.67 million people live in the municipality, with 1.25 million in the capital region, and 1.58 million in the metropolitan area. As the most populous urban area in Finland, it is the countrys most significant centre for politics, education, finance, culture, and research.         </string>
+    <string name="activitiesHelsinki">
+        Visit Suomenlinna
+\nDiscover Helsinki Cathedral
+\nExplore Market Square (Kauppatori)
+\nVisit Temppeliaukio Church (Rock Church)
+\nEnjoy Finnish Sauna
+    </string>
+
+
+
+    <string name="infoRovaniemi">Rovaniemi
+This is info about Rovaniemi.
+        </string>
+
+    <string name="activitiesRovaniemi">
+           Visit Santa Claus Village
+Husky Safari, Reindeer Farm Visit, Lights Hunting, Snowmobile Safaris
+        </string>
+
+
+    <string name="infoTurku">Turku
+This is info about Turku.
+        </string>
+    <string name="activitiesTurku">
+            Visit Turku Castle, Wander Through Old Turku, Turku Archipelago, Turku Market Square, Aboa Vetus and Ars Nova Museum
+        </string>
+
+
+    <string name="infoPorvoo">Porvoo
+This is info about Porvoo.
+        </string>
+    <string name="activitiesPorvoo">
+            Explore Old Porvoo, Porvoo Cathedral, Porvoo Museum, Porvoo Art Factory, Porvoo River Cruise
+        </string>
+
+
+
+    <string name="infoTampere">Tampere
+Tampere is the most populous inland city in the Nordic countries. The urban area has a population of approximately 340,000.       Tampere is the most important urban, economic and cultural centre in the whole of inland Finland.
+        </string>
+    <string name="activitiesTampere">
+Visit Nasinneula Observation Tower
+\nExplore Sarkanniemi Amusement Park
+\nWalk around Pyynikki Park and Observation Tower
+\nDiscover Tampere Cathedral
+\nExperience Finnish Sauna Culture
+        </string>
+
+
+
+    <string name="infoSavonlinna">Savonlinna
+Savonlinna is located in the heart of the Saimaa Lakeland, which is why it is also known as the Capital of Saimaa. Together with Mikkeli, they are the two largest towns in the South Savo region and both are centres of the regions hospital districts. Savonlinna enclaves the municipality of Enonkoski.
+        </string>
+    <string name="activitiesSavonlinna">
+Visit Olavinlinna Castle
+Attend the Savonlinna Opera Festival
+Cruise on Lake Saimaa
+Explore Linnansaari National Park
+Visit Savonlinna Market Square
+        </string>
+
+
+
+    <string name="infoOulu">Oulu
+Oulu is a city in Finland and the regional capital of North Ostrobothnia. It is located on the northwestern coast of the country at the mouth of the River Oulu. The population of Oulu is approximately 215,000, while the sub-region has a population of approximately 263,000. It is the 5th most populous municipality in Finland, and the fourth most populous urban area in the country. Oulu is also the most populous city in Northern Finland.
+        </string>
+    <string name="activitiesOulu">
+Visit Nallikari Beach
+Explore Oulu Market Square
+Discover Oulus Museums
+Experience Northern Lights
+Take a River Cruise
+        </string>
+
+
 </resources>
