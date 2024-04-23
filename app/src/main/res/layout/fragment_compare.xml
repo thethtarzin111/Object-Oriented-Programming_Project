@@ -8,12 +8,151 @@
     tools:context=".CompareFragment">
 
     <!--This is to update blank fragment layout-->
+
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Compare Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/white"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="78dp"
+        android:text="Compare"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="40dp"
+        android:text="Select two cities you want to compare"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/search_city1"
+        android:layout_width="333dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Enter first city or municipality"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/search_city2"
+        android:layout_width="333dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/search_city1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Enter second city or municipality"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/compareBtn"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_city2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="100dp"
+        android:text="Compare" />
+
+
+    <TextView
+        android:id="@+id/c1Population"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/compareBtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/c1Employ"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/c1Population"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/c1Work"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/c1Employ"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/c2Population"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/compareBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/c2Employ"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/c2Population"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/c2Work"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/c2Employ"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white" />
+
 
 </RelativeLayout>
