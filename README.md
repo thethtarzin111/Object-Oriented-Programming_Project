@@ -34,3 +34,5 @@ Total desired points = 30
 
 - Thet Htar Zin (UI, coding, initiating the initial project submission)
 - Bruno Jasvin (UML, coding, README file)
+
+**CLASS DIAGRAM DISPLAYED IN PDF VERSION OF README**
