@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class QuizFragment extends Fragment implements View.OnClickListener{
 
@@ -124,5 +128,25 @@ public class QuizFragment extends Fragment implements View.OnClickListener{
         score = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
+    }
+    private void updateFragmentDarkMode(boolean isDarkMode) {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                if (fragment instanceof QuizFragment) {
+                    ((QuizFragment) fragment).updateDarkMode(isDarkMode);
+                }
+            }
+        }
+    }
+
+    private void updateDarkMode(boolean isDarkMode) {
+        if (isDarkMode) {
+            // Dark mode is enabled
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkBlue));
+        } else {
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.LightBlue)); // Set background color to white
+        }
     }
 }

@@ -1,8 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <color name="lightBlue">#002F6C</color>
+
+    <!-- Base application theme. -->
     <style name="Base.Theme.OOP_Project" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Set the window background color to light blue -->
+        <item name="android:windowBackground">@color/lightBlue</item>
+        <!-- Add other customizations here if needed -->
     </style>
 
     <style name="Theme.OOP_Project" parent="Base.Theme.OOP_Project" />

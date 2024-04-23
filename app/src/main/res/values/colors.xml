@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#8692F7</color>
     <color name="LightBlue">#002F6C</color>
-    <color name="darkblue">#000C1B</color>
-    <color name="midblue">#031933</color>
+    <color name="darkBlue">#000C1B</color>
+    <color name="midBlue">#031933</color>
 </resources>

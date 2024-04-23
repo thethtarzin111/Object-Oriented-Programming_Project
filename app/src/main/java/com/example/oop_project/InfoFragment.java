@@ -17,4 +17,7 @@ public class InfoFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info, container, false);
     }
+
+
+
 }

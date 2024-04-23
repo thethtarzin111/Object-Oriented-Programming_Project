@@ -1,8 +1,13 @@
 package com.example.oop_project;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -147,6 +153,47 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                     });
                 }
             });
+        }
+    }
+
+    private void updateFragmentDarkMode(boolean isDarkMode) {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                if (fragment instanceof CompareFragment) {
+                    ((CompareFragment) fragment).updateDarkMode(isDarkMode);
+                }
+            }
+        }
+    }
+
+    private void updateDarkMode(boolean isDarkMode) {
+        if (isDarkMode) {
+            // Dark mode is enabled
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkBlue)); // Set background color to black
+            // Adjust text colors to be visible on dark background
+            // For example:
+            editTextCity1.setTextColor(Color.BLACK);
+            editTextCity2.setTextColor(Color.BLACK);
+            city1Population.setTextColor(Color.WHITE);
+            city2Population.setTextColor(Color.WHITE);
+            city1Work.setTextColor(Color.WHITE);
+            city2Work.setTextColor(Color.WHITE);
+            city1EmploymentRate.setTextColor(Color.WHITE);
+            city2EmploymentRate.setTextColor(Color.WHITE);
+
+        } else {
+            // Dark mode is disabled
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.LightBlue)); // Set background color to white
+            editTextCity1.setTextColor(Color.BLACK);
+            editTextCity2.setTextColor(Color.BLACK);
+            city1Population.setTextColor(Color.WHITE);
+            city2Population.setTextColor(Color.WHITE);
+            city1Work.setTextColor(Color.WHITE);
+            city2Work.setTextColor(Color.WHITE);
+            city1EmploymentRate.setTextColor(Color.WHITE);
+            city2EmploymentRate.setTextColor(Color.WHITE);
         }
     }
 }

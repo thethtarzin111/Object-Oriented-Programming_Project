@@ -3,10 +3,9 @@ package com.example.oop_project;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -18,10 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DiscoverFragment extends Fragment implements View.OnClickListener{
+public class DiscoverFragment extends Fragment implements View.OnClickListener {
 
 
     private TextView txtPopulation;
@@ -57,7 +57,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
 
     public void onClick(View v) {
         Button clickedButton = (Button) v;
-        if(clickedButton.getId()==R.id.search_button) {
+        if (clickedButton.getId() == R.id.search_button) {
 
             DiscoverFragment context = this;
             MunicipalityDataRetriever municipalityDataRetriever = new MunicipalityDataRetriever();
@@ -95,21 +95,21 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                         public void run() {
                                             String populationString = "Population Changes During the Past Three Years\n";
 
-                                            for (PopulationData data: municipalityDataArrayList) {
+                                            for (PopulationData data : municipalityDataArrayList) {
                                                 populationString = populationString + data.getYear() + ": " + data.getPopulation() + "\n";
                                             }
                                             txtPopulation.setText(populationString);
 
                                             String workString = "Workplace self-sufficiency\n";
 
-                                            for (WorkplaceSelfSufficiencyData workdata: workplaceSelfSufficiencyDataArrayList) {
+                                            for (WorkplaceSelfSufficiencyData workdata : workplaceSelfSufficiencyDataArrayList) {
                                                 workString = workString + workdata.getYear() + ": " + workdata.getWorkplaceSelfSufficiency() + "\n";
                                             }
 
                                             txtWork.setText(workString);
                                             String employmentString = "Employment Rate\n";
 
-                                            for (EmploymentData employmentData: employmentDataArrayList) {
+                                            for (EmploymentData employmentData : employmentDataArrayList) {
                                                 employmentString = employmentString + employmentData.getYear() + ": " + employmentData.getEmploymentRate() + "\n";
                                             }
 
@@ -144,13 +144,36 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener{
                                                     break;
                                             }
 
-// Set the icon to the ImageView
                                             weatherIcon.setImageResource(iconResource);
                                         }
-                                    });                            }
+                                    });
+                                }
+
+                                private void updateFragmentDarkMode(boolean isDarkMode) {
+                                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                                    List<Fragment> fragments = fragmentManager.getFragments();
+                                    if (fragments != null) {
+                                        for (Fragment fragment : fragments) {
+                                            if (fragment instanceof DiscoverFragment) {
+                                                ((DiscoverFragment) fragment).updateDarkMode(isDarkMode);
+                                            }
+                                        }
+                                    }
+                                }
+
+
                             }
             );
         }
     }
+
+    private void updateDarkMode(boolean isDarkMode) {
+        if (isDarkMode) {
+            // Dark mode is enabled
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.darkBlue));
+        } else {
+            getView().setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.LightBlue)); // Set background color to white
+        }
     }
+}
 

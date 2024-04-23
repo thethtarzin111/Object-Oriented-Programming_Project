@@ -7,7 +7,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Switch;
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        updateNavigationMenuTextColor(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
         Menu menu = navigationView.getMenu();
         MenuItem menuItem = menu.findItem(R.id.nav_dark_mode_switch);
         darkModeSwitch = (Switch) menuItem.getActionView().findViewById(R.id.dark_mode_switch);
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 recreate();
                 Toast.makeText(MainActivity.this, "Dark mode enabled", Toast.LENGTH_SHORT).show();
+
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 recreate();
@@ -84,6 +92,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 super.onBackPressed();
             }
         }
+
+    private void updateNavigationMenuTextColor(boolean isDarkMode) {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+
+        int textColor = isDarkMode ? Color.WHITE : Color.BLACK; // Choose appropriate text color based on dark mode state
+        int iconTint = isDarkMode ? Color.WHITE : Color.BLACK;
+
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem menuItem = menu.getItem(i);
+            SpannableString spannableString = new SpannableString(menuItem.getTitle());
+            spannableString.setSpan(new ForegroundColorSpan(textColor), 0, spannableString.length(), 0);
+            menuItem.setTitle(spannableString);
+
+            Drawable icon = menuItem.getIcon();
+            if (icon != null) {
+                icon.setTint(iconTint);
+                menuItem.setIcon(icon);
+            }  else {
+                // Log a message if the icon is null (for debugging purposes)
+                Log.d("IconNullCheck", "Icon is null for menu item: " + menuItem.getTitle());
+            }
+        }
+    }
+
     }
 
 
