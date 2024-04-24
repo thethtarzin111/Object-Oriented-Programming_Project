@@ -1,5 +1,5 @@
 package com.example.oop_project;
-
+//This is where we implement attributes of weather data.
 public class WeatherData {
     private String name;
     private String main;

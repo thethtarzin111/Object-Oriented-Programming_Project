@@ -8,18 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
-import net.bytebuddy.implementation.Implementation;
-
 import java.util.ArrayList;
 
-public class InfoFragment extends Fragment {
-
+public class GalleryFragment extends Fragment {
+    //This is the gallery fragment where we show pictures of cities. We use recycler view here.
+    //The pictures used are from the internet.
     private RecyclerView recyclerView;
     private ArrayList<Integer> integerArrayList;
     private RecyclerViewAdapter recyclerViewAdapter;

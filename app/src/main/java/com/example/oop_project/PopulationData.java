@@ -1,7 +1,6 @@
 package com.example.oop_project;
 
-import java.math.BigDecimal;
-
+//This is the population data class where we initialize values related to population data.
 public class PopulationData {
 
     private int year;

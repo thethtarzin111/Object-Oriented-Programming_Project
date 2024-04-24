@@ -1,5 +1,7 @@
 package com.example.oop_project;
 
+//This is the discover fragment where we type in the city's name and get data of it including weather,
+//population, workplace self-sufficiency and employment rate.
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
@@ -54,7 +56,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
+//This is to make sure that search button works when the user clicks it.
     public void onClick(View v) {
         Button clickedButton = (Button) v;
         if (clickedButton.getId() == R.id.search_button) {
@@ -89,10 +91,11 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
 
                                     WeatherData weatherData = weatherDataRetriever.getData(editMunicipalityName.getText().toString());
 
-                                    // When we want to update values we got from the API to the UI, we must do it inside runOnUiThread -method
+                                    // We use runOnUiThread when we want to update values we got from the API to the UI.
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //Population
                                             String populationString = "Population Changes During the Past Three Years\n";
 
                                             for (PopulationData data : municipalityDataArrayList) {
@@ -100,6 +103,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
                                             }
                                             txtPopulation.setText(populationString);
 
+                                            //Displaying workplace self-sufficiency data
                                             String workString = "Workplace self-sufficiency\n";
 
                                             for (WorkplaceSelfSufficiencyData workdata : workplaceSelfSufficiencyDataArrayList) {
@@ -107,6 +111,8 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
                                             }
 
                                             txtWork.setText(workString);
+
+                                            //Displaying employment rate data
                                             String employmentString = "Employment Rate\n";
 
                                             for (EmploymentData employmentData : employmentDataArrayList) {
@@ -116,6 +122,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
                                             txtEmployment.setText(employmentString);
 
 
+                                            //Displaying weather data
                                             String weatherDataAsString = weatherData.getName() + "\n" +
                                                     "Weather now: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")\n" +
                                                     "Temperature: " + weatherData.getTemperature() + " °C\n" +
@@ -123,6 +130,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
 
                                             txtWeather.setText(weatherDataAsString);
 
+                                            //This is to display the weather icon according to the weather
                                             String weatherCondition = weatherData.getMain();
                                             int iconResource;
                                             switch (weatherCondition) {
@@ -149,6 +157,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
                                     });
                                 }
 
+                                //This is to make sure the layout, themes and colour changes correctly when the dark mode is on.
                                 private void updateFragmentDarkMode(boolean isDarkMode) {
                                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                                     List<Fragment> fragments = fragmentManager.getFragments();

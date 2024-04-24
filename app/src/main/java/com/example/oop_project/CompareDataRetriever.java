@@ -1,7 +1,8 @@
 package com.example.oop_project;
 
-
-
+//We have this class where we implement how and where the data is obtained. This part is important
+//because we're using API from HTTPS
+//This part of the code is taken reference from the API instruction video by the teacher.
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +32,7 @@ public class CompareDataRetriever {
         return cityCodeNames;
     }
 
+    //This is getting work self-sufficiency data from the json file from Statistics Finland using API.
     public ArrayList<WorkplaceSelfSufficiencyData> obtainWorkplaceAndEmploymentData(CompareFragment context, String municipalityName) {
 
         String code = cityCodeNames.get(municipalityName);
@@ -49,11 +51,8 @@ public class CompareDataRetriever {
                     response.append(responseLine.trim());
                 }
 
-                //JsonNode municipalityData = objectMapper.readTree(response.toString());
-
                 JsonNode workAndEmploymentData = objectMapper.readTree(response.toString());
 
-                //WorkplaceSelfSufficiencyData workplaceSelfSufficiencyData = new WorkplaceSelfSufficiencyData();
                 ArrayList<String> years = new ArrayList<>();
                 JsonNode workplaceSelfSufficiency = null;
 
@@ -89,6 +88,8 @@ public class CompareDataRetriever {
         return null;
 
     }
+
+    //This is getting population data from the json file from Statistics Finland using API.
     public ArrayList<PopulationData> obtainPopulationData(CompareFragment context, String municipalityName) {
         String code = cityCodeNames.get(municipalityName);
         try {
@@ -144,6 +145,7 @@ public class CompareDataRetriever {
         return null;
     }
 
+    //This is getting employment rate from the json file from Statistics Finland using API.
     public ArrayList<EmploymentData> obtainEmploymentData(CompareFragment context, String municipalityName) {
 
         String code = cityCodeNames.get(municipalityName);
@@ -203,6 +205,7 @@ public class CompareDataRetriever {
 
     }
 
+    //This part of the code is to make connections and request to API
     private static HttpURLConnection connectToAPIAndSendPostRequest(ObjectMapper objectMapper, JsonNode jsonQuery, URL url)
             throws MalformedURLException, IOException, ProtocolException, JsonProcessingException {
 

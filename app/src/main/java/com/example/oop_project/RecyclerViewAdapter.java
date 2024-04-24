@@ -12,7 +12,8 @@ import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+//We need this recycler view adapter for our recycler view. The code is implemented with reference from the youtube video,
+//https://youtu.be/FbWh1snvvho?si=JSsSZHm8-1CBKbfk
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private final Context context;

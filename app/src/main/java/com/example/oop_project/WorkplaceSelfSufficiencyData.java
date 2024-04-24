@@ -1,5 +1,5 @@
 package com.example.oop_project;
-
+//This is where we initialize workplace self-sufficiency attributes,
 public class WorkplaceSelfSufficiencyData {
     double workplaceSelfSufficiency;
 

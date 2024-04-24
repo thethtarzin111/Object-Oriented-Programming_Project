@@ -1,5 +1,5 @@
 package com.example.oop_project;
-
+//This is the employment data class where we initialize values related to employment data.
 public class EmploymentData {
     double employmentRate;
     int year;

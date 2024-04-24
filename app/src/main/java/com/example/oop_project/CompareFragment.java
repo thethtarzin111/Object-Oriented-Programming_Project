@@ -1,5 +1,8 @@
 package com.example.oop_project;
 
+//Here, for comparing the cities, a fragment is implemented.A lot of data about two cities can be compared
+//but since i'm using many text views instead of recycler view, only population, work, and employment rate
+//are compared because if there are more text views, the app loads longer and lags.
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,9 +25,11 @@ import java.util.concurrent.Executors;
 
 public class CompareFragment extends Fragment  implements View.OnClickListener {
 
-    private EditText editTextCity1;
-    private EditText editTextCity2;
-    Button buttonCompare;
+    private EditText editTextCity1; //initialize variable for search box which the user type the first city
+    private EditText editTextCity2; //initialize variable for search box which the user type the first city
+    Button buttonCompare; //variable of button for comparing
+
+    //Below, we have separate text views like population, work self-sufficiency and employment rate for each city
     private TextView city1Population;
     private TextView city2Population;
     private TextView city1Work;
@@ -40,6 +45,7 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_compare, container, false);
+        //Here, we have to match the id of the components we have in fragment_compare.xml file
         editTextCity1 = view.findViewById(R.id.search_city1);
         editTextCity2 = view.findViewById(R.id.search_city2);
         buttonCompare = view.findViewById(R.id.compareBtn);
@@ -54,6 +60,8 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
         return view;
     }
 
+
+    //This is to make sure the functions work when the user click on the compare button.
     public void onClick(View v) {
         Button clickedButton = (Button) v;
         if (clickedButton.getId() == R.id.compareBtn) {
@@ -81,6 +89,7 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                     ArrayList<WorkplaceSelfSufficiencyData> city1WPSS = compareDataRetriever.obtainWorkplaceAndEmploymentData(context, editTextCity1.getText().toString());
                     ArrayList<WorkplaceSelfSufficiencyData> city2WPSS = compareDataRetriever.obtainWorkplaceAndEmploymentData(context, editTextCity2.getText().toString());
 
+                    //If either of the city data is absent, we will not get any value.
                     if (city1WPSS == null || city2WPSS == null) {
                         return;
                     }
@@ -98,13 +107,12 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                         public void run() {
 
 
+                            //Here, we code the texts that we want to see when we hit compare button.
                             String M1Population = cityName1+"\n"+"Population\n";
                             for (PopulationData data : populationDataCity1) {
                                 M1Population = M1Population + data.getYear() + ": " + data.getPopulation() + "\n";
                             }
                             city1Population.setText(M1Population);
-                            // Before updating the UI, print the contents of comparisonResults
-
 
                             String M2Population = cityName2 +"\n"+ "Population\n";
                             for (PopulationData data : populationDataCity2) {
@@ -112,9 +120,8 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                             }
                             city2Population.setText(M2Population);
 
-                            // Before updating the UI, print the contents of comparisonResults
 
-                            //WorkSelfsuficiency of city 1
+                            //Work self-sufficiency of city 1
                             String M1WorkString = "Workplace self-sufficiency\n";
 
                             for (WorkplaceSelfSufficiencyData workdata : city1WPSS) {
@@ -122,9 +129,9 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                             }
                             city1Work.setText(M1WorkString);
 
-                            // Before updating the UI, print the contents of comparisonResults
 
-                            //WorkSelfsuficiency of city 2
+
+                            //Work self-sufficiency of city 2
                             String M2WorkString = "Workplace self-sufficiency\n";
 
                             for (WorkplaceSelfSufficiencyData workdata : city2WPSS) {
@@ -133,7 +140,7 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
                             city2Work.setText(M2WorkString);
 
 
-                            //Employment of city 1
+                            //Employment rate of city 1
                             String M1Emp = "Employment Rate\n";
 
                             for (EmploymentData employmentData : city1Employment) {
@@ -143,6 +150,7 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
 
                             String M2Emp = "Employment Rate\n";
 
+                            //Employment rate of city 2
                             for (EmploymentData employmentData : city2Employment) {
                                 M2Emp = M2Emp + employmentData.getYear() + ": " + employmentData.getEmploymentRate() + "\n";
                             }
@@ -168,6 +176,7 @@ public class CompareFragment extends Fragment  implements View.OnClickListener {
         }
     }
 
+    //This is to make sure the layout, themes and colour changes correctly when the dark mode is on.
     private void updateDarkMode(boolean isDarkMode) {
         if (isDarkMode) {
             // Dark mode is enabled

@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.widget.Switch;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
-
+//This is the main activity where we make sure each fragment works and this is also where the navigation menu resides.
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    //This is to make sure each fragment is shown correct when the corresponding menu option is chosen.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (itemId == R.id.nav_compare) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompareFragment()).commit();
         } else if (itemId == R.id.nav_info) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InfoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GalleryFragment()).commit();
         }
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
@@ -93,11 +94,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
+    //This is to make sure the layout, themes and colour changes correctly when the dark mode is on.
     private void updateNavigationMenuTextColor(boolean isDarkMode) {
         NavigationView navigationView = findViewById(R.id.nav_view);
         Menu menu = navigationView.getMenu();
 
-        int textColor = isDarkMode ? Color.WHITE : Color.BLACK; // Choose appropriate text color based on dark mode state
+        int textColor = isDarkMode ? Color.WHITE : Color.BLACK; // If dark mode, color will be white. If not, it'll be black.
         int iconTint = isDarkMode ? Color.WHITE : Color.BLACK;
 
         for (int i = 0; i < menu.size(); i++) {

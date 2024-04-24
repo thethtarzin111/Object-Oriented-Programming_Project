@@ -1,5 +1,5 @@
 package com.example.oop_project;
-
+//This is the fragment for the quiz funciton.
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -124,6 +124,7 @@ public class QuizFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    //After finishing the whole quiz, it'll restart.
     void restartQuiz() {
         score = 0;
         currentQuestionIndex = 0;
@@ -140,7 +141,7 @@ public class QuizFragment extends Fragment implements View.OnClickListener{
             }
         }
     }
-
+    //This is to make sure the layout, themes and colour changes correctly when the dark mode is on.
     private void updateDarkMode(boolean isDarkMode) {
         if (isDarkMode) {
             // Dark mode is enabled

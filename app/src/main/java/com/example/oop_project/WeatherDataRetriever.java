@@ -1,5 +1,5 @@
 package com.example.oop_project;
-
+//We have this class to retrieve data from weather API.
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.JsonNode;

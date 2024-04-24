@@ -1,6 +1,7 @@
 package com.example.oop_project;
-
+//This class is to predefine questions, choices and correct answers.
 public class QA_Quiz {
+    //These are a set of questions.
     public static String question[] = {
 
             "What is Finland's nickname?",
@@ -15,6 +16,7 @@ public class QA_Quiz {
             "How does the Finnish concept of \"jantelagen\" (the Law of Jante) influence social behavior and attitudes towards success?"
     };
 
+    //These are the choices we'll show on our quiz page.
     public static String choices[][] = {
             {"Land of a thousand saunas", "Land of a thousand lakes", "Land of Norther Lights",
             "Land of the introverts"},
@@ -65,6 +67,8 @@ public class QA_Quiz {
             "By discouraging competition and innovation in favor of conformity"}
 
     };
+
+    //These are the correct answers.
     public static String correctAnswers[] = {
 
             "Land of a thousand lakes",
